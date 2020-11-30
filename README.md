@@ -15,9 +15,9 @@
 ```
 imgcook-dsl-example
     |----package.json         // 测试所需要的包安装描述
-    |----README.md        
-    |----src                             
-    |      |----index.js      // Node 虚拟机里运行的 function 代码                      
+    |----README.md
+    |----src
+    |      |----index.js      // Node 虚拟机里运行的 function 代码
     |      |----template.xtpl // 内置模板渲染文件，可选
     |
     |----test
@@ -36,14 +36,12 @@ imgcook-dsl-example
     - viewportWidth：窗口视窗，默认 375
     - width：设计稿尺寸，默认 750
   - 【三方库】prettier：[prettier](https://prettier.io/) 实例，可直接格式化输出优美的代码字符串
-  - 【三方库】_：[lodash](https://lodash.com) 实例，可直接使用 lodash 强大的能力
+  - 【三方库】\_：[lodash](https://lodash.com) 实例，可直接使用 lodash 强大的能力
   - 【辅助函数】helper：自定义格式化代码输出 [imgcook/dsl-helper](https://www.npmjs.com/package/@imgcook/dsl-helper)
   - 【公共函数】utils：[全局公共函数](https://imgcook.com/docs?slug=editor-info#QRBBA)配置
 
 ```javascript
-module.exports = function(schema, option) {
-
-}
+module.exports = function(schema, option) {};
 ```
 
 #### 函数返回
@@ -52,9 +50,9 @@ module.exports = function(schema, option) {
 
 ##### 1. 单文件模板返回
 
-如果使用脚手架里的 `template.xtpl` 模板能力，代码展示默认只有 `index.js` 单文件，函数返回数据如下：
+如果使用脚手架里的 `template.xtpl`  模板能力，代码展示默认只有  `index.js`  单文件，函数返回数据如下：
 
-- **renderData**：模板渲染所需的数据，跟 `template.xtpl` 里定义的字符串模板相关
+- **renderData**：模板渲染所需的数据，跟 `template.xtpl`  里定义的字符串模板相关
 
 ```javascript
 module.exports = function(schema, option) {
@@ -62,9 +60,9 @@ module.exports = function(schema, option) {
 
   return {
     renderData: renderData,
-    prettierOpt: {}          // 非必须，用于执行模板渲染后代码格式化配置
-  };
-}
+    prettierOpt: {}, // 非必须，用于执行模板渲染后代码格式化配置
+  };
+};
 ```
 
 最终在 imgcook 上点击代码查看的效果如下：
@@ -86,31 +84,31 @@ module.exports = function(schema, option) {
   const renderData = {};
   return {
     panelDisplay: [
-        {
-            panelName: 'component.wxml',
-            panelValue: renderData.wxml,
-            panelType: 'xml'
-        },
-        {
-            panelName: 'component.wxss',
-            panelValue: renderData.wxss,
-            panelType: 'style'
-        },
-        {
-            panelName: 'component.js',
-            panelValue: renderData.js,
-            panelType: 'js'
-        },
-        {
-            panelName: 'component.json',
-            panelValue: renderData.json,
-            panelType: 'json'
-        }
+      {
+        panelName: "component.wxml",
+        panelValue: renderData.wxml,
+        panelType: "xml",
+      },
+      {
+        panelName: "component.wxss",
+        panelValue: renderData.wxss,
+        panelType: "style",
+      },
+      {
+        panelName: "component.js",
+        panelValue: renderData.js,
+        panelType: "js",
+      },
+      {
+        panelName: "component.json",
+        panelValue: renderData.json,
+        panelType: "json",
+      },
     ],
     noTemplate: true,
-    prettierOpt: {}                       // 非必须，用于执行模板渲染后代码格式化配置
-  };
-}
+    prettierOpt: {}, // 非必须，用于执行模板渲染后代码格式化配置
+  };
+};
 ```
 
 最终在 imgcook 上点击代码查看的效果如下：
@@ -119,7 +117,7 @@ module.exports = function(schema, option) {
 
 #### 响应式
 
-vm/rpx/rem 适配：默认我们使用的设计稿尺寸规范是 750，如果出现设计稿是 375，可在『编辑器左小角 - 应用设置』做规范适配后（更改设计稿宽度），在 DSL 侧针对需要进行响应的样式做处理（通过 `option.responsive.wdith` 进行缩放处理）。
+vm/rpx/rem 适配：默认我们使用的设计稿尺寸规范是 750，如果出现设计稿是 375，可在『编辑器左小角 - 应用设置』做规范适配后（更改设计稿宽度），在 DSL 侧针对需要进行响应的样式做处理（通过 `option.responsive.wdith`  进行缩放处理）。
 
 ### 本地开发测试
 
@@ -142,7 +140,6 @@ DSL 提审、更新和发布流程如下：
 点击如下图按钮提交审核，会进入待审核状态，审核完成结果有审核通过和审核不通过，如果不通过要按照审核要求修改 DSL 代码重新提交审核。
 
 ![](https://img.alicdn.com/tfs/TB1uDzIo7T2gK0jSZFkXXcIQFXa-1162-684.png)
-
 
 **待审核状态**
 
@@ -170,11 +167,18 @@ DSL 提审、更新和发布流程如下：
 
 ## 官方 DSL 示例
 
-### React D2C Schema
+### H5 标准开发规范
 
-DSL 代码仓库：https://github.com/imgcook-dsl/react-standard
+DSL 代码仓库：[https://github.com/imgcook-dsl/h5-standard](https://github.com/imgcook-dsl/h5-standard)
 
 预览效果：
 
-![](https://gw.alicdn.com/tfs/TB1ZDQUq8r0gK0jSZFnXXbRRXXa-1492-819.png)
+![](https://img.alicdn.com/tfs/TB1P2HGo5_1gK0jSZFqXXcpaXXa-1500-879.png)
 
+### 微信小程序开发规范
+
+DSL 代码仓库：[https://github.com/imgcook-dsl/wx-miniapp-template](https://github.com/imgcook-dsl/wx-miniapp-template)
+
+预览效果：
+
+![](https://img.alicdn.com/tfs/TB1ZEy5oV67gK0jSZPfXXahhFXa-1500-876.png)
