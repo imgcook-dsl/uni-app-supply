@@ -129,26 +129,31 @@ module.exports = function(schema, option) {
   };
 
   // parse layer props(static values or expression)
-  const parseProps = (value, isReactNode) => {
-    if (typeof value === 'string') {
-      if (isExpression(value)) {
-        if (isReactNode) {
-          return value.slice(1, -1);
-        } else {
-          return value.slice(2, -2);
+    // parse layer props(static values or expression)
+    const parseProps = (value, isReactNode) => {
+      if (typeof value === 'string' || typeof value === 'number') {
+        if (isExpression(value)) {
+          if (isReactNode) {
+            return value.slice(1, -1);
+          } else {
+            return value.slice(2, -2);
+          }
         }
-      }
-
-      if (isReactNode) {
+  
+        if (isReactNode) {
+          return value;
+        } else {
+          return `'${value}'`;
+        }
+      } else if (typeof value === 'function') {
+        const {params, content} = parseFunction(value);
+        return `(${params}) => {${content}}`;
+      } else if (typeof value === 'boolean') {
         return value;
-      } else {
-        return `'${value}'`;
+      } else if (typeof value === 'object') {
+        return JSON.stringify(value);
       }
-    } else if (typeof value === 'function') {
-      const { params, content } = parseFunction(value);
-      return `(${params}) => {${content}}`;
     }
-  };
 
   // parse async dataSource
   const parseDataSource = (data) => {
@@ -421,7 +426,7 @@ module.exports = function(schema, option) {
           import styles from './index.less';
           ${utils.join('\n')}
           ${classes.join('\n')}
-          export default ${schema.componentName}0;
+          export default ${schema.componentName}_0;
         `,
           prettierOpt
         ),
